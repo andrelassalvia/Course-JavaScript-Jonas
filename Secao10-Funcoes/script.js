@@ -1,38 +1,41 @@
 "use strict";
 
-//Diferenca entre passar argumentos por valor e por referencia
-const flight = "LH1234";
-const jonas = {
-  name: "Jonas Cardoso",
-  passport: 123456789,
+// Usando flag global para retirar espacos entre as palavras
+const oneWord = function (str) {
+  return str.replace(/ /g, "").toLowerCase();
 };
 
-const checkIn = function (flightNumber, passenger) {
-  flightNumber = "LA9999";
-  passenger.name = "Mr." + passenger.name;
+// oneWord = oneWord("A patria que te Pariu");
+// console.log(oneWord);
 
-  if (passenger.passport === 123456789) {
-    alert("Check In OK");
-  } else {
-    alert("Tenta de novo");
-  }
+// Usando spread operator e destructuring assignment para CAPITALIZAR primeira palavra
+const upperFirstWord = function (str) {
+  const [first, ...others] = str.split(" ");
+  return [first.toUpperCase(), ...others].join(" ");
 };
 
-checkIn(flight, jonas);
-console.log(flight); // Resposta: LH1234 - nao alterou o valor original
-console.log(jonas); // Resposta: name: Mr. Jonas Cardoso, Passport: 123456789 - alterou o valor original
-
-const newPassport = function (person) {
-  person.passport = Math.trunc(Math.random() * 10000000);
+// Higher-Order function
+const transformer = function (str, fn) {
+  console.log(`Original: ${str}`);
+  console.log(`Modificado: ${fn(str)}`);
+  console.log(`Transformado por: ${fn.name}`);
 };
 
-newPassport(jonas);
-checkIn(flight, jonas);
-console.log(flight);
-console.log(jonas);
+transformer("Somente sei que nada sei", upperFirstWord);
+transformer("Somente sei que nada sei", oneWord);
 
-// Resumo da opera: objetos sao alterados pois fazem referencia a um ponto da memoria.
-// variaveis primitivas nao sao alteradas pois estao gravados naquele endereco.
+// const teste = "tudo que sobe desce";
+// console.log(teste.split(" "));
+// const [first, ...others] = teste.split(" ");
+// console.log(first);
+// console.log(others);
+// const junta = [first.toUpperCase(), ...others].join(" ");
+// console.log(junta);
 
-// JavaScript nao possui passagem por referencia pois o valor na memoria nao e alterado por referencia.
-// o que acontece com o objeto e que alteramos a referencia de endereco e nao de memoria.
+const high5 = function () {
+  console.log("🖐🏻");
+};
+
+document.body.addEventListener("click", high5);
+
+["Adam", "Maria", "Tonho"].forEach(high5);
