@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+      As vezes precisamos de uma funcao que seja executada uma unica vez e que desapareca apos a execucao.
+     arenteses e chama-la imediatamente apos
+      */
+
+      (function () {
+        console.log("Funcao unica");
+      })();
+
+      // Funciona da mesma forma para arrow function
+      (() => console.log("Funcao unica de novo"))();
+
+      // Quando criamos um bloco utilizar var permite que qualqyer escopo tenha acesso.
+      {
+        const isPrivate = 23;
+        var notPrivate = 56;
+      }
+
+      // console.log(isPrivate);
+      console.log(notPrivate);
+    </script>
+  </body>
+</html>
