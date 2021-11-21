@@ -12,6 +12,7 @@
     </div>
     <script>
       "use strict";
+      /* Assim como o metodo Call, o Bind permite utilizar o this para qualquer funcao. A diferenca é que o Bind não chama a função imediatamente. Ela retorna uma nova funcao ondo o this estará agregado. */
 
       // Objeto
       const lufthansa = {
@@ -65,6 +66,7 @@
       book.call(euroWings, ...flghtData);
 
       // BIND METHOD
+      /*Utilizamos o bind para criar uma nova funcao. Quando fazemos isso, o this ja esta implicito e nao precisamos escreve-lo novamente. */
       const bookEW = book.bind(euroWings);
       bookEW(147, "Jamial Achado");
 
