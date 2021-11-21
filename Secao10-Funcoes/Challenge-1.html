@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Challenge 1</title>
+  </head>
+  <body>
+    <button class="poll">Poll</button>
+    <script>
+      const poll = {
+        question: "Whats your favorite programme language?",
+        options: ["0: JavaScript", "1: Python", "2: Rust", "3: C++"],
+        answers: new Array(4).fill(0),
+        registerNewAnswer() {
+          const answer = Number(
+            prompt(
+              `${this.question}\n ${this.options.join(
+                "\n"
+              )}\n  (Write option number)`
+            )
+          );
+          typeof answer === "number" &&
+            answer < this.options.length &&
+            this.answers[answer]++;
+
+          this.displayResults();
+          this.displayResults("string");
+        },
+        displayResults(type = "array") {
+          if (type === "array") {
+            console.log(this.answers);
+          } else if (type === "string") {
+            console.log(
+              `Results are: JavaScript = ${this.answers[0]}, Python = ${this.answers[1]}, Rust = ${this.answers[2]}, C++ = ${this.answers[3]}`
+            );
+            console.log(this.answers.join(", "));
+          }
+        },
+      };
+
+      document
+        .querySelector(".poll")
+        .addEventListener("click", poll.registerNewAnswer.bind(poll));
+
+      poll.displayResults.call({ answers: [5, 3, 2] });
+    </script>
+  </body>
+</html>
