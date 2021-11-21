@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <p>Clique aqui</p>
+    </div>
+    <script>
+      "use strict";
+
+      // funcoes que retornam outras funcoes
+      const greet = function (greeting) {
+        return function (name) {
+          console.log(`${greeting} ${name}`);
+        };
+      };
+
+      const greetHey = greet("Hey");
+      greetHey("Jonas");
+      greetHey("Michael");
+      greet("Saudacoes")("Moacir");
+
+      // Escrevendo em arrow function
+      const saudacao = (aceno) => (pessoa) => console.log(`${aceno} ${pessoa}`);
+    </script>
+  </body>
+</html>
