@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Closures</title>
+  </head>
+  <body>
+    <script>
+      // Closures simplesmente acontecem em algumas situacoes. O temos que fazer é reconhecer estas situacoes.
+
+      // Example 1
+      const secureBooking = function () {
+        let passengerCount = 0;
+        return function () {
+          passengerCount++;
+          console.log(`${passengerCount} passengers`);
+        };
+      };
+      const booker = secureBooking();
+
+      booker();
+      booker();
+      booker();
+
+      console.dir(booker);
+
+      // Example 2
+      let f;
+      const g = function () {
+        const a = 23;
+        f = function () {
+          console.log(a * 2);
+        };
+      };
+
+      const h = function () {
+        const b = 777;
+        f = function () {
+          console.log(b * 2);
+        };
+      };
+      g();
+      f();
+      h();
+      f();
+
+      // Example 3
+      const boardPassengers = function (n, wait) {
+        const perGroup = n / 3;
+
+        setTimeout(function () {
+          console.log(`The numbers of passengers are ${n}`);
+          console.log(`They will be boarder in groups of ${perGroup}.`);
+        }, wait * 1000);
+        console.log(`The passengers will board in ${wait} seconds`);
+      };
+
+      const perGroup = 1000;
+      boardPassengers(180, 5);
+    </script>
+  </body>
+</html>
