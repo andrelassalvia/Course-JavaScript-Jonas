@@ -520,6 +520,24 @@
       const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
       /////////////////////////////////////////////////
+
+      console.log("Duas formas de encontrar um elemento qualquer");
+      const arr = [23, 11, 64];
+      console.log(arr[0], "arr[0]");
+      console.log(arr.at(0), "arr.at(0) - novo metodo");
+
+      // Principal vantagem do uso de at() ao inves de [i]
+
+      console.log("Encontrando o ultimo elemento");
+      console.log(
+        arr[arr.length - 1],
+        "arr[arr.length - 1] - ultimo elemento - metodo tradicional"
+      );
+      console.log(arr.slice(-1)[0], "arr.slice(-1)[0] - outra forma"); // retorna uma copia do array com somente o ultimo elemento
+      console.log(arr.at(-1), "arr.at(-1) - Metodo at - Ja marca a posicao");
+      console.log("At method tbem funciona com strings");
+      console.log("jonas".at(0), '"jonas".at(0)');
+      console.log("jonas".at(-1), '"jonas".at(-1)');
     </script>
   </body>
 </html>
