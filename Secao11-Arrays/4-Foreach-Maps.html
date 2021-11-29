@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ForEach Maps and Sets</title>
+  </head>
+  <body>
+    <script>
+      //O objeto Map contém pares de chave-valor e lembra a ordem original da inserção das chaves. Qualquer valor (objetos e valores primitivos) podem ser usados como chave ou valor.
+      console.log("Percorrendo Map");
+      const currencies = new Map([
+        ["USD", "United States dollar"],
+        ["EUR", "Euro"],
+        ["GBP", "Pound sterling"],
+      ]);
+
+      currencies.forEach((value, key, map) => {
+        console.log(`${key}: ${value} - ${map}`);
+      });
+
+      // ------------------------------------------------------------//
+      console.log("============================================");
+
+      // O objeto Set permite que você armazene valores únicos de qualquer tipo, desde valores primitivos a referências a objetos.
+      console.log("Percorrendo Sets");
+      const currenciesUnique = new Set(["USD", "GBP", "USD", "EUR", "EUR"]);
+      console.log(currenciesUnique, "Retorna valores unicos");
+      console.log("No set a key e o value sao identicos");
+      currenciesUnique.forEach((value, key, map) => {
+        console.log(`${key}: ${value} - ${map}`);
+      });
+    </script>
+  </body>
+</html>
