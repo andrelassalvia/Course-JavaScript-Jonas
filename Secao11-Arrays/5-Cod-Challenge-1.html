@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cod Challenge #1</title>
+  </head>
+  <body>
+    <script>
+      const [cat1, dogsJulia, ...cat2] = [3, [5, 2], [12, 7]];
+
+      const dogsKate = [4, 1, 15, 8, 3];
+      console.log(dogsJulia);
+
+      const checkAge = function (vet) {
+        vet.forEach((age, i) => {
+          age < 3 ? console.log("pupil") : console.log("adult");
+        });
+      };
+
+      checkAge(dogsJulia);
+      console.log("=============");
+      checkAge(dogsKate);
+      console.log("=============");
+
+      const dogLouco = [3, 5, 2, 12, 7];
+      console.log(dogLouco.slice(1, 3));
+
+      dogLouco.splice(-2);
+      dogLouco.splice(0, 1);
+      console.log(dogLouco);
+    </script>
+  </body>
+</html>
