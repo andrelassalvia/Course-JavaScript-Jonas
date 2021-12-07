@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Map Method</title>
+  </head>
+  <body>
+    <script>
+      const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+      console.log(
+        "MAP Method permite a criacao de um novo array a partir de um array original"
+      );
+      console.log(
+        "Suponha que o array abaixo esta em euro e quermos converter a dolares tx 1.1"
+      );
+      console.log("[200, 450, -400, 3000, -650, -130, 70, 1300]");
+      const euroToUsd = 1.1;
+      const movementsUsd = movements.map(function (mov) {
+        return Number(mov * euroToUsd).toFixed(2);
+      });
+      console.log(
+        movements,
+        "aplcamos array.map(function(mov){return calculo desejado})"
+      );
+      console.log(
+        movementsUsd,
+        "Usar toFixed para casas decimais retorna string"
+      );
+      console.log("===============================");
+      console.log(
+        "Podemos fazer o mesmo com arrow function",
+        "|||||",
+        "movements.map((mov) => mov * euroToUsd)"
+      );
+      const arrowMovementsToUsd = movements.map((mov) =>
+        Math.round(mov * euroToUsd)
+      );
+      console.log(arrowMovementsToUsd, "Usar Math.round() retorna inteiro");
+      console.log("===============================");
+      console.log("Tambem podemos acessar os indices com o Map Methods");
+      console.log("movements.map((mov, i) => {}");
+
+      const movementsDescription = movements.map(
+        (mov, i) =>
+          `Movement ${i + 1}: You ${mov > 0 ? "deposited" : "withdrew"} ${
+            mov > 0 ? mov : Math.abs(mov)
+          }`
+      );
+      console.log(movementsDescription);
+      console.log(
+        "Portanto, o Map Method cria um array inteiramente novo seguindo as regras que determinamos"
+      );
+    </script>
+  </body>
+</html>
