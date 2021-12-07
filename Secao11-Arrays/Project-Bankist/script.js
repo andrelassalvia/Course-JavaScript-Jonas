@@ -78,6 +78,74 @@ const displayMovements = function (movement) {
 };
 displayMovements(account1.movements);
 
+// Computing Usernames
+console.log("Computing Usernasme");
+const user = "Steven Thomas Williams"; // usuario stw
+const username = user.toLowerCase().split(" ");
+console.log("Array username ->", username);
+console.log("Novo array com somente a plimeira letra");
+const usernameFirstLetterArray = username.map((name) => name.at(0));
+console.log(usernameFirstLetterArray);
+console.log("Junta as letras com Join('')");
+const usernameFirstLetter = usernameFirstLetterArray.join("");
+console.log(usernameFirstLetter);
+console.log(
+  "Poderiamos fazer todos estes metodos em uma so constante, basta ir colocanco ponto"
+);
+console.log(`const username1 = user
+  .toLowerCase()
+  .split(" ")
+  .map((name) => name.at(0))
+  .join("");`);
+const username1 = user
+  .toLowerCase()
+  .split(" ")
+  .map((name) => name.at(0))
+  .join("");
+console.log("Resultado =>", username1);
+console.log("============================================");
+console.log("Vamos transformar em uma funcao para valer para qualquer usuario");
+function createUsernameUser(user) {
+  return user
+    .toLowerCase()
+    .split(" ")
+    .map((name) => name.at(0))
+    .join("");
+}
+console.log(createUsernameUser("Sarah Smith"));
+console.log("============================================");
+console.log(
+  "Precisamos criar um username para cada usuario. A ideia aqui nao é criar um novo array com os usernames e sim aproveitar um array que ja foi criado com os accounts e inserir um novo elemento chamado username"
+);
+console.log("const accounts = [account1, account2, account3, account4]");
+console.log(
+  "Para isso teremos que usar o foreach para modificar os elementos de um objeto que ja existe"
+);
+console.log(
+  "Criamos uma funcao para percorrer os objetos, achar o nome da conta e criar um username"
+);
+console.log(`function createUsername(accs) 
+    accs.forEach(function (acc) {
+    acc.username = acc.owner
+      .toLowerCase()
+      .split(" ")
+      .map((name) => name.at(0))
+      .join("");
+  })`);
+function createUsername(accs) {
+  accs.forEach(function (acc) {
+    acc.username = acc.owner
+      .toLowerCase()
+      .split(" ")
+      .map((name) => name.at(0))
+      .join("");
+  });
+}
+createUsername(accounts);
+console.log(
+  "Para verificarmos se deu certo, chamamos a funcao e damos cl() no objeto"
+);
+console.log(accounts);
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
