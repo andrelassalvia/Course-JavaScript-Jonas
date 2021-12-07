@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Filter Method</title>
+  </head>
+  <body>
+    <script>
+      const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+      console.log(
+        `Como filtrar os elementos de um array para satisfazer a uma certa condicao?`
+      );
+      console.log(
+        `Vamos utilizar o Filter Method passando uma funcao para encontrar somente os depositos.`
+      );
+      const deposits = movements.filter(function (mov) {
+        return mov > 0;
+      });
+      console.log(`const deposits = movements.filter(function (mov) {
+        return mov > 0;
+      });`);
+      console.log(
+        "Metodo filter funciona com relacoes booleanas e retorna aquilo que for True"
+      );
+      console.log(deposits);
+      console.log("=================================");
+      console.log("Passando para arrow function...");
+      const entradas = movements.filter((mov) => mov > 0);
+      console.log(`      const entradas = movements.filter((mov) => mov > 0);
+`);
+      console.log(entradas);
+      console.log("==============================");
+      console.log("Para treinar um array de saidas...");
+      const saidas = movements.filter((mov) => mov < 0);
+      console.log(saidas);
+    </script>
+  </body>
+</html>
