@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reduce Method</title>
+  </head>
+  <body>
+    <script>
+      const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+      console.log(
+        "Reduce reduz todos os elementos de um array para somente um valor segundo uma determinada regra"
+      );
+      console.log("movements =>", movements);
+      console.log("Qual o saldo final do array movements?");
+      const balance = movements.reduce(function (acc, cur, i, arr) {
+        return acc + cur;
+      }, 0);
+      console.log(balance);
+      console.log(`
+      const balance = 
+        movements.reduce(function (acc, cur, i, arr) {
+          return acc + cur;
+        }, 
+        0);`);
+      console.log(`
+        acc = valor acumulado,
+        cur = elemento atual do array,
+        i = indice do array,
+        arr = array
+        obs: O valor depois da virgula (zero neste caso) refere-se ao valor inicial do acc
+        `);
+      console.log(`
+      `);
+      console.log(
+        `Podemos utilizar o i para fazer relacao entre a iteracao e o valor acumulado`
+      );
+      const iteration = movements.reduce((acc, cur, i) => {
+        console.log(
+          `Iteracao ${i + 1}: ${
+            cur > 0 ? "Deposito" : "Retirada"
+          } = ${cur} -> Saldo = ${acc + cur}`
+        );
+        return acc + cur;
+      }, 0);
+    </script>
+  </body>
+</html>
