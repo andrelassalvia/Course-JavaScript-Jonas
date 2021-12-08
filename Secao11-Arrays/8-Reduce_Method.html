@@ -44,6 +44,47 @@
         );
         return acc + cur;
       }, 0);
+
+      // Maximo valor
+      console.log(
+        `
+        ENCONTRANDO O VALOR MAXIMO COM REDUCE
+
+        `
+      );
+      console.log("movements = ", movements);
+      console.log(
+        `
+        Para encontrar o valor maximo
+        `
+      );
+
+      console.log(`const max = movements.reduce((acc, mov) => {
+        if (acc > mov) {
+          return acc;
+        } else {
+          return mov;
+        }
+      }, 
+      movements[0]);
+
+      console.log(max);
+      `);
+
+      const max = movements.reduce((acc, mov) => {
+        if (acc > mov) {
+          return acc;
+        } else {
+          return mov;
+        }
+      }, movements[0]);
+      console.log(max);
+      console.log(`
+      - O acc assume sempre o valor retornado,
+      - Nesse caso está iniciando com o valor na posição [0] = 200,
+      - Sendo o proximo mov = 450 > que acc, a função retorna mov e o acc assume este valor,
+      - Sendo o acc maior que o mov, a função retorna o valor de acc, que se mantem o mesmo.
+      `);
     </script>
   </body>
 </html>
