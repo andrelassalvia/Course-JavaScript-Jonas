@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Coding Challenge 2</title>
+  </head>
+  <body>
+    <script>
+      console.log(`
+                  DESAFIO 2
+      - Criar uma funcao calcAverageHumanAge,
+      - Calcular a idade dos cachorros caso eles fossem humanos,
+      - Seguir a formula:
+        Se dog <= 2 anos -> human = 2 * dogAge,
+        Se dog > 2 anos -> human = 16 + dogAge * 4.
+      - Excluir dogs com menos de 18 anos humanos
+      - Calcular a idade media de todos os cachorros com 18 anos ou mais,
+      - Test DATA 1 = [5,2,4,1,15,8,3]
+      - Test DATA 2 = [16,6,10,5,6,1,4]
+      `);
+
+      const data1 = [5, 2, 4, 1, 15, 8, 3];
+      const data2 = [16, 6, 10, 5, 6, 1, 4];
+      const calcAverageHumanAge = function (ages) {
+        const human = ages.map((age) => (age <= 2 ? age * 2 : age * 4 + 16));
+        const adult = human.filter((age) => age >= 18);
+        const average = adult.reduce(
+          (acc, age, i, arr) => acc + age / arr.length,
+          0
+        );
+
+        return average;
+      };
+      const avg1 = calcAverageHumanAge(data1);
+      const avg2 = calcAverageHumanAge(data2);
+      console.log(avg1, avg2);
+    </script>
+  </body>
+</html>
