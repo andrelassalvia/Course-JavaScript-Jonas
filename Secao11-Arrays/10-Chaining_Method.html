@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chaining Method</title>
+  </head>
+  <body>
+    <script>
+      const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+      console.log(
+        `
+            CHAINING METHOD
+
+        Podemos encadear os 3 metodos aprendidos anteriormente (filter, map e reduce)
+
+        movements.filter().map().reduce();
+
+      `
+      );
+
+      console.log(
+        `Vamos fazer a conversao do array movements de euro para dolar e somar o total de depositos.`
+      );
+
+      const euroToDolar = 1.1;
+
+      const totalDeposits = movements
+        .filter((mov) => mov > 0)
+        .map((mov) => mov * euroToDolar)
+        .reduce((acc, mov) => acc + mov);
+
+      console.log(
+        `
+        const totalDeposits = movements
+          .filter((mov) => mov > 0)
+          .map((mov) => mov * euroToDolar)
+          .reduce((acc, mov) => acc + mov);
+        `
+      );
+
+      console.log(totalDeposits);
+
+      console.log(
+        `
+        Se precisarmos debugar, temos que faze-lo nos metodos que retornam array.
+        `
+      );
+
+      const totalDebits = movements
+        .filter((mov) => mov < 0)
+        .map((mov, i, arr) => {
+          console.log("Resultado arr=>", arr);
+        });
+
+      console.log(
+        `
+        const totalDebits = movements
+          .filter((mov) => mov < 0)
+          .map((mov, i, arr) => {
+            console.log(arr);
+        });
+
+        Este é um bom uso da variável arr`
+      );
+    </script>
+  </body>
+</html>
