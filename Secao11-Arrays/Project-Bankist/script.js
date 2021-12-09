@@ -199,6 +199,34 @@ const calcDisplayBalance = function (movements) {
 };
 calcDisplayBalance(account1.movements);
 
+// CALCULAR TOTAL DE SAIDAS E ENTRADAS E MOSTRAR NO DISPLAY
+
+const sumIn = function (movements) {
+  const sum = movements
+    .filter((mov) => mov > 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumIn.textContent = sum;
+};
+
+sumIn(account1.movements);
+
+const sumOut = function (movements) {
+  const deb = movements
+    .filter((mov) => mov < 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumOut.textContent = Math.abs(deb);
+};
+sumOut(account1.movements);
+
+const interest = function (movements) {
+  labelSumInterest.textContent = movements
+    .filter((mov) => mov > 0)
+    .map((mov) => (mov * 1.2) / 100)
+    .filter((interest, i, arr) => interest > 1)
+    .reduce((acc, mov) => acc + mov);
+};
+interest(account1.movements);
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
