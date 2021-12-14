@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Destructuring Arrays</title>
+  </head>
+  <body>
+    <script>
+      "use strict";
+
+      const restaurant = {
+        name: "Classico Italiano",
+        location: "Vila Angelo Tavanti, 23",
+        categories: ["Italian", "Pizzeria", "Vegetarian", "Organic"],
+        starterMenu: [
+          "Focaccia",
+          "Bruschetta",
+          "Garlic",
+          "Bread",
+          "Caprese Salad",
+        ],
+        mainMenu: ["Pizza", "Pasta", "Risotto"],
+        order(starterIndex, mainIndex) {
+          return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+        },
+      };
+
+      console.log(`DESESTRUTURACAO DE ARRAYS`);
+      console.log(`Vamos simular um delivery de restaurante`);
+      console.log(
+        `
+          Desestruturação é quebrar uma estrutura de dados complexa
+        em uma estrutura de dados menor, como uma variável.
+
+          Portanto, para arrays, usamos a desestruturação para recuperar elementos da array
+        e armazená-los em variáveis de uma maneira muito fácil.
+
+        Exemplo:
+
+        Ao inves de fazermos assim:
+
+        const arr = [2, 3, 4];
+        const a = arr[0];
+        const b = arr[1];
+        const c = arr[2];
+
+        Podemos fazer assim:
+
+        const [d, e, f] = arr;
+        console.log(d, e, f);
+
+        Esta desestruturacao nao altera o array original
+        console.log(arr);
+        `
+      );
+
+      const arr = [2, 3, 4];
+      const a = arr[0];
+      const b = arr[1];
+      const c = arr[2];
+
+      const [d, e, f] = arr;
+      console.log(d, e, f);
+      console.log("array original", arr);
+
+      console.log(`Tambem podemos fazer assim`);
+      console.log(`
+      const [x, y, z] = [2, 3, 4];
+      console.log(x, y, z);
+      `);
+      const [x, y, z] = [2, 3, 4];
+      console.log(x, y, z);
+
+      console.log(`Nao precisamos colocar todos os elementos de um array
+
+      const restaurant = {
+        name: "Classico Italiano",
+        location: "Vila Angelo Tavanti, 23",
+        categories: ["Italian", "Pizzeria", "Vegetarian", "Organic"],
+        starterMenu: [
+          "Focaccia",
+          "Bruschetta",
+          "Garlic",
+          "Bread",
+          "Caprese Salad",
+        ],
+        mainMenu: ["Pizza", "Pasta", "Risotto"],
+      };
+      
+      const [first, second] = restaurant.categories;
+      console.log(first, second);
+      
+      `);
+      const [first, second] = restaurant.categories;
+      console.log(first, second);
+
+      console.log(
+        `Se quisermos pular um elemento basta deixar virgulas vazias
+        
+        const [pri, , seg] = restaurant.categories;
+        console.log(pri, seg);`
+      );
+      const [pri, , seg] = restaurant.categories;
+      console.log(pri, seg);
+
+      console.log(`Se quisermos alterar o valor de alguma posicao
+
+      let [main, secondary] = restaurant.categories;
+      console.log(main, secondary);
+
+      [secondary, main] = [main, secondary]; - inverte a ordem
+      console.log(main, secondary);
+      `);
+      let [main, secondary] = restaurant.categories;
+      console.log("Original:", main, secondary);
+      [secondary, main] = [main, secondary];
+      console.log("Alterado:", main, secondary);
+
+      console.log(`
+      Tambem podemos criar uma funcao retornando um array e desestruturar
+      este array em diversas variaveis.
+      
+      Isto nos permite retornar diversos valores a partir de uma funcao.
+      
+      Vamos escrever uma funcao para solicitar um delivery:
+      
+      const restaurant = {
+        name: "Classico Italiano",
+        location: "Vila Angelo Tavanti, 23",
+        categories: ["Italian", "Pizzeria", "Vegetarian", "Organic"],
+        starterMenu: [
+          "Focaccia",
+          "Bruschetta",
+          "Garlic",
+          "Bread",
+          "Caprese Salad",
+        ],
+        mainMenu: ["Pizza", "Pasta", "Risotto"],
+
+        Incluimos a funcao abaixo no objeto
+        ----------------------------------
+        order(starterIndex, mainIndex) {
+          return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+        },
+
+        Esta funcao basicamente monta o cardapio com uma entrada e um prato principal
+        a partir do indice de cada menu.
+
+        const [starter, princip] = restaurant.order(2, 0); - parametros sao as posicoes do array
+        console.log(starter, princip);
+      };`);
+
+      const [starter, princip] = restaurant.order(2, 0);
+      console.log(starter, princip);
+
+      console.log(`E como trabalhamos com nested arrays?
+      
+      const nested = [2, 4, [5, 6, 7]];
+      const [i, , j] = nested;
+      console.log(i, j);
+
+      const [l, , [m, n, o]] = nested;
+      console.log(l, m, n, o);`);
+
+      const nested = [2, 4, [5, 6, 7]];
+      const [i, , j] = nested;
+      console.log(i, j);
+      const [l, , [m, n, o]] = nested;
+      console.log(l, m, n, o);
+
+      console.log(
+        `Tambem podemos definir valores default para variaveis quando as estamos extraindo.
+        
+        Pode ser util quando trabalhamos com arrays que nao sabemos sua lenght. Ou seja, podemos cair
+        no erro de tentar desestruturar uma posicao do array que nao existe.
+
+        Nesse caso retornamos um valor default.
+        
+        const [p = 1, q = 1, r = 1] = [8, 9];
+        console.log(p, q, r);
+
+        Nao achando um valor para retornar para r ele assumiu o valor default = 1
+        `
+      );
+      const [p = 1, q = 1, r = 1] = [8, 9];
+      console.log(p, q, r);
+    </script>
+  </body>
+</html>
