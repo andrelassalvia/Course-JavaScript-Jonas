@@ -77,7 +77,7 @@ const displayMovements = function (movement) {
     containerMovements.insertAdjacentHTML("afterbegin", html);
   });
 };
-displayMovements(account1.movements);
+// displayMovements(account1.movements);
 
 // COMPUTING USERNAMES
 console.log("COMPUTING USERNAME");
@@ -197,35 +197,71 @@ const calcDisplayBalance = function (movements) {
   const balance = movements.reduce((acc, mov) => acc + mov);
   labelBalance.textContent = `£${balance}`;
 };
-calcDisplayBalance(account1.movements);
+// calcDisplayBalance(account1.movements);
 
 // CALCULAR TOTAL DE SAIDAS E ENTRADAS E MOSTRAR NO DISPLAY
 
-const sumIn = function (movements) {
-  const sum = movements
+const calcDisplaySummary = function (account) {
+  const interest = account.interestRate; // Cada conta possui um interest diferente
+  labelSumIn.textContent = account.movements
     .filter((mov) => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
-  labelSumIn.textContent = sum;
-};
-
-sumIn(account1.movements);
-
-const sumOut = function (movements) {
-  const deb = movements
-    .filter((mov) => mov < 0)
-    .reduce((acc, mov) => acc + mov, 0);
-  labelSumOut.textContent = Math.abs(deb);
-};
-sumOut(account1.movements);
-
-const interest = function (movements) {
-  labelSumInterest.textContent = movements
+  labelSumOut.textContent = Math.abs(
+    account.movements
+      .filter((mov) => mov < 0)
+      .reduce((acc, mov) => acc + mov, 0)
+  );
+  labelSumInterest.textContent = account.movements
     .filter((mov) => mov > 0)
-    .map((mov) => (mov * 1.2) / 100)
-    .filter((interest, i, arr) => interest > 1)
+    .map((mov) => (mov * interest) / 100)
+    .filter((intr, i, arr) => intr > 1)
     .reduce((acc, mov) => acc + mov);
 };
-interest(account1.movements);
+
+// interest(account1.movements);
+
+// LOGIN
+
+/*
+- todo o conjunto sera disparado pelo click do botao.
+- coloca as iniciais em user
+- get text
+- procura dentro do array de objetos user igual - find
+- volta com objeto
+- get pin
+- compara o text com o atributo pin deste objeto
+- sendo iguais muda a transicao da tela e carrega o objeto
+- chama os metodos para carregar as informacoes na tela
+*/
+
+let currentAccount;
+btnLogin.addEventListener("click", function (e) {
+  e.preventDefault();
+  currentAccount = accounts.find(
+    (acc) => acc.username === inputLoginUsername.value
+  );
+
+  if (currentAccount?.pin === parseInt(inputLoginPin.value)) {
+    // Display UI and messages
+    labelWelcome.textContent = `Welcome back ${
+      currentAccount.owner.split(" ")[0]
+    }`;
+    containerApp.style.opacity = 100;
+
+    // clear user and pin
+    inputLoginUsername.value = inputLoginPin.value = "";
+    inputLoginPin.blur();
+    // Display movements
+    displayMovements(currentAccount.movements);
+
+    // Display balance
+    calcDisplayBalance(currentAccount.movements);
+
+    // Display Summary
+    calcDisplaySummary(currentAccount);
+  } else {
+  }
+});
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////

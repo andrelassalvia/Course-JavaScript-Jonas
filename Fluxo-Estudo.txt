@@ -1,0 +1,11 @@
+- Rever Secao 9
+
+- Banklist
+	- Login
+		- coloca as iniciais em user
+		- get text
+		- procura dentro do array de objetos user igual - find
+		- volta com objeto
+		- get pin
+		- compara o text com o atributo pin deste objeto
+		- sendo iguais muda a transicao da tela e carrega o movements
