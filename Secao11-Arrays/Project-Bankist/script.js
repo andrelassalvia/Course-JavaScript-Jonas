@@ -220,6 +220,13 @@ const calcDisplaySummary = function (account) {
 
 // interest(account1.movements);
 
+// ATUALIZACAO TELA
+const update = function (movements, account) {
+  displayMovements(movements);
+  calcDisplayBalance(movements);
+  calcDisplaySummary(account);
+};
+
 // LOGIN
 
 /*
@@ -251,15 +258,49 @@ btnLogin.addEventListener("click", function (e) {
     // clear user and pin
     inputLoginUsername.value = inputLoginPin.value = "";
     inputLoginPin.blur();
+
+    // Atualiza a tela:
+    update(currentAccount.movements, currentAccount);
     // Display movements
-    displayMovements(currentAccount.movements);
+    // displayMovements(currentAccount.movements);
 
-    // Display balance
-    calcDisplayBalance(currentAccount.movements);
+    // // Display balance
+    // calcDisplayBalance(currentAccount.movements);
 
-    // Display Summary
-    calcDisplaySummary(currentAccount);
-  } else {
+    // // Display Summary
+    // calcDisplaySummary(currentAccount);
+  }
+});
+
+// TRANSFER MONEY
+let creditAccount;
+btnTransfer.addEventListener("click", function (e) {
+  e.preventDefault();
+  let transferAmount = -Number(inputTransferAmount.value);
+  creditAccount = accounts.find(
+    (acc) => acc.username === inputTransferTo.value
+  );
+
+  // debitar movements conta atual => saldo > 0
+  const balance = currentAccount.movements.reduce((acc, mov) => {
+    return (acc = acc + mov);
+  }, 0);
+  if (
+    transferAmount < 0 &&
+    balance + transferAmount >= 0 &&
+    creditAccount.username !== currentAccount.username
+  ) {
+    currentAccount.movements.push(transferAmount);
+
+    // creditar movements conta indicada
+    creditAccount.movements.push(Math.abs(transferAmount));
+
+    // apagar texto colocado nas cx de dialogo
+    inputTransferAmount.value = inputTransferTo.value = "";
+    inputTransferTo.blur();
+    inputTransferAmount.blur();
+
+    update(currentAccount.movements, currentAccount);
   }
 });
 
