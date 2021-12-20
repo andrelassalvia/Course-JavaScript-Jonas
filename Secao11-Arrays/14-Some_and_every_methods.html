@@ -38,6 +38,7 @@
 
       const accounts = [account1, account2, account3, account4];
 
+      // SOME METHOD
       console.log(`
       Includes é um metodo com retorno booleano que resulta em true ou false caso o valor exato procurado encontre-se dentro de um array
 
@@ -59,6 +60,20 @@
 
       const deposit = account1.movements.some((mov) => mov > 0);
       console.log("deposit=", deposit);
+
+      // EVERY METHOD
+      console.log(`
+      EVERY METHOD
+
+      O metodo every retorna verdadeiro se todos os elementos corresponderem a condicao dada.
+
+      account1.movements.every((mov) => mov > 0) -> Nao sao todos os movimentos que sao depositos.
+  
+      `);
+      console.log(
+        "every->",
+        account1.movements.every((mov) => mov > 0)
+      );
     </script>
   </body>
 </html>
