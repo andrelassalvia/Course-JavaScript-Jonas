@@ -304,6 +304,32 @@ btnTransfer.addEventListener("click", function (e) {
   }
 });
 
+// CLOSE ACCOUNT
+
+// precisa ser a mesma conta que esta logada
+//
+btnClose.addEventListener("click", function (e) {
+  e.preventDefault();
+
+  if (
+    inputCloseUsername.value === currentAccount.username &&
+    Number(inputClosePin.value) === Number(currentAccount.pin)
+  ) {
+    // find account in array
+    const bye = accounts.findIndex(
+      (acc) => acc.username === inputCloseUsername.value
+    );
+    // delete account
+    accounts.splice(bye, 1);
+    console.log("Conta apagada");
+    console.log(accounts);
+    // Hide UI
+    containerApp.style.opacity = 0;
+  } else {
+    console.log("Usuario e/ou senha incorretos");
+  }
+});
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
