@@ -74,6 +74,21 @@
         "every->",
         account1.movements.every((mov) => mov > 0)
       );
+
+      // SEPARATE CALLBACK
+      console.log(`
+      
+      SEPARATE CALLBACK
+
+      Podemos chamar uma funcao de callback a partir de uma constante armazenada anteriormente.
+
+      const callback = (mov) => mov > 0;
+      console.log(account1.movements.some(callback));
+
+      `);
+
+      const callback = (mov) => mov > 0;
+      console.log(account1.movements.some(callback));
     </script>
   </body>
 </html>
