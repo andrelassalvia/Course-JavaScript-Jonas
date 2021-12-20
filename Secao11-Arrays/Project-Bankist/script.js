@@ -330,6 +330,28 @@ btnClose.addEventListener("click", function (e) {
   }
 });
 
+// REQUEST LOAN
+
+// Emprestimos sao feitos caso a conta possua algum deposito >= 10% do valor solicitado
+
+btnLoan.addEventListener("click", function (e) {
+  e.preventDefault();
+
+  // checar o valor solicitado
+  const loanRequested = Number(inputLoanAmount.value);
+  // comparar com valor dos depositos
+  const validAmount = currentAccount.movements.some(
+    (mov) => mov >= 0.1 * loanRequested
+  );
+  if (validAmount) {
+    currentAccount.movements.push(loanRequested);
+    update(currentAccount.movements, currentAccount);
+  } else {
+    console.log(`Valor nao liberado.`);
+  }
+  inputLoanAmount.value = "";
+});
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
