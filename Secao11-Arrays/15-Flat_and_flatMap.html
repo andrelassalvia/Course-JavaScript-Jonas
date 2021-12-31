@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flat and FlatMap</title>
+  </head>
+  <body>
+    <script>
+      console.log(`Se tivermos um array em que entre seus elementos estejam outros arrays:
+      
+        const arr = [[1,2,3],4,5,[6,7,8]];
+
+        Podemos extrair os elementos contidos nos arrays internos ao array principal utilizando o metodo flat:
+
+        console.log(arr.flat());
+      `);
+
+      const arr = [[1, 2, 3], 4, 5, [6, 7, 8]];
+      console.log(arr.flat());
+
+      console.log(
+        `
+        Sendo que o metodo flat nao possui a necessidade de passarmos nenhuma funcao de callback
+        
+        Ocorre que um array pode ter outros sub-arrays dentro dos arrays internos, aumentando o nival de profundidade do array original.
+        
+        Para tornarmos flat um array com maior nivel de profundidade precisamos passar esta condicao como parametro da funcao.
+
+        const arrDeep = [[[1, 2], 3], [4, [5, 6]], 7, 8];
+        `
+      );
+
+      const arrDeep = [[[1, 2], 3], [4, [5, 6]], 7, 8];
+      console.log(arrDeep);
+      console.log(`
+      console.log(arrDeep.flat(2));
+      `);
+      console.log(arrDeep.flat(2));
+
+      console.log(`
+      Este metodo pode ser util, por exemplo, caso o banklist queira calcular o balanco geral do todas as contas de sua carteira.
+      
+      Nos temos todos estes movimentos guardados em arrays que estao guardados em objetos.
+
+      const account1 = {
+  owner: "Jonas Schmedtmann",
+  movements: [200, 450, -400, 3000, -650, -130, 70, 1300],
+  interestRate: 1.2, // %
+  pin: 1111,
+};
+
+const account2 = {
+  owner: "Jessica Davis",
+  movements: [5000, 3400, -150, -790, -3210, -1000, 8500, -30],
+  interestRate: 1.5,
+  pin: 2222,
+};
+
+const account3 = {
+  owner: "Steven Thomas Williams",
+  movements: [200, -200, 340, -300, -20, 50, 400, -460],
+  interestRate: 0.7,
+  pin: 3333,
+};
+
+const account4 = {
+  owner: "Sarah Smith",
+  movements: [430, 1000, 700, 50, 90],
+  interestRate: 1,
+  pin: 4444,
+};
+
+const accounts = [account1, account2, account3, account4];
+
+Primeiro trazemos todos os movements para um array passando um map:
+
+const allMovements = accounts.map((account) => account.movements);
+
+      console.log(allMovements);
+      `);
+      const account1 = {
+        owner: "Jonas Schmedtmann",
+        movements: [200, 450, -400, 3000, -650, -130, 70, 1300],
+        interestRate: 1.2, // %
+        pin: 1111,
+      };
+
+      const account2 = {
+        owner: "Jessica Davis",
+        movements: [5000, 3400, -150, -790, -3210, -1000, 8500, -30],
+        interestRate: 1.5,
+        pin: 2222,
+      };
+
+      const account3 = {
+        owner: "Steven Thomas Williams",
+        movements: [200, -200, 340, -300, -20, 50, 400, -460],
+        interestRate: 0.7,
+        pin: 3333,
+      };
+
+      const account4 = {
+        owner: "Sarah Smith",
+        movements: [430, 1000, 700, 50, 90],
+        interestRate: 1,
+        pin: 4444,
+      };
+
+      const accounts = [account1, account2, account3, account4];
+
+      const allMovements = accounts.map((account) => account.movements);
+      console.log(allMovements);
+
+      console.log(
+        `Depois transformamos todos os 4 arrays em somente um usando o flat:
+        
+        const overall = allMovements.flat();
+        console.log(overall);`
+      );
+      const overall = allMovements.flat();
+      console.log(overall);
+
+      console.log(`
+      E por fim utilizamos reduce para fazer a soma de todos os valores e saber o resultado final:
+      
+      const overallBalance = overall.reduce((acc, mov) => (acc = acc + mov), 0);
+      console.log(overallBalance);`);
+      const overallBalance = overall.reduce((acc, mov) => (acc = acc + mov), 0);
+      console.log(overallBalance);
+      console.log(`
+      Note que utilizamos um map e depois um flat para extrair arrays de um objeto e depoois coloca-los todos em somente um array. 
+      Poderiamos fazer estes dois movimentos utilizando o flatMap. Como o unico parametro de flat é o nivel de profundidade, passamos o flatMap praticamente como se escrevessemos um map comum.
+
+      Obs: flatMap so vai ate o primeiro nivel de profundidade. Para niveis maiores utilizar a construcao anterior.
+      
+      const overallBalance2 = accounts
+        .flatMap((account) => account.movements)
+        .reduce((acc, mov) => (acc += mov), 0);
+
+      console.log(overallBalance2);
+      `);
+
+      const overallBalance2 = accounts
+        .flatMap((account) => account.movements)
+        .reduce((acc, mov) => (acc += mov), 0);
+      console.log(overallBalance2);
+    </script>
+  </body>
+</html>

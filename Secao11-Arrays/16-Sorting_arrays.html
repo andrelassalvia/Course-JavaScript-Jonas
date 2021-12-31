@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sorting Arrays</title>
+  </head>
+  <body>
+    <script>
+      console.log(`
+      Podemos reordenar um array utilizando o metodo sort().
+
+      const owners = ["Jonas", "Zach", "Adam", "Martha"];
+      console.log("Array sorted", owners.sort());
+      `);
+      const owners = ["Jonas", "Zach", "Adam", "Martha"];
+      console.log("Array sorted", owners.sort());
+      console.log(`
+      Contudo este metodo modifica o array original:
+
+      console.log(owners);
+      `);
+      console.log(owners);
+
+      console.log(`
+      Alem disso o metodo sort() funciona com strings mas nao funciona com numeros
+      
+      const movements = [5000, 3400, -150, -790, -3210, -1000, 8500, -30];
+      console.log(movements.sort());`);
+      const movements = [5000, 3400, -150, -790, -3210, -1000, 8500, -30];
+      console.log(movements.sort());
+      console.log(`
+      Para fazermos o sort com numeros precisamos passar uma funcao de callback que inclua a logica desejada.
+      
+      movements.sort((a, b) => {
+        if (a > b) return 1;
+        if (a < b) return -1;
+      });
+
+      console.log(movements);
+      `);
+      movements.sort((a, b) => {
+        if (a > b) return 1;
+        if (a < b) return -1;
+      });
+      console.log(movements);
+      console.log(`
+      O sort faz um loop ao longo do array reordenando as posicoes conforme o retorno recebido.
+      O looping ocorre repetidamente ate que todo o array esteja reordenado.
+      Se quisermos o array na forma descendente basta inverter o return
+      
+      Obs: se houver um array com mix entre numeros e strings, nao utilizar este metodo`);
+    </script>
+  </body>
+</html>

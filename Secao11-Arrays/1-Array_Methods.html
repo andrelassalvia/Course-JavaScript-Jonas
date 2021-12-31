@@ -524,8 +524,11 @@
       // Arrays sao objetos. Arrays_methods sao funcoes proprias dos arrays nativas no JavaScript.
 
       let arr = ["a", "b", "c", "d", "e"];
+      console.log("array original", arr);
       // SLICE - nao modifica array original
-      console.log(arr.slice(2), "slice(2)");
+      console.log(`SLICE - nao modifica array original`);
+      console.log(arr.slice(), "arr.slice()");
+      console.log(arr.slice(2), "arr.slice(2)");
       console.log(arr.slice(2, 4), "slice(2, 4)");
       console.log(arr.slice(-2), "slice(-2)");
       console.log(arr.slice(-1), "slice(-1)");
