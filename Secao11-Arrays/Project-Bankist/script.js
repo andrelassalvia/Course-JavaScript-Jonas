@@ -369,6 +369,43 @@ btnSort.addEventListener("click", function (e) {
   displayMovements(currentAccount.movements, !sorted);
   sorted = !sorted;
 });
+
+// ARRAY.FROM - exemplo de utilizacoo
+
+console.log(`
+Escutando eventos ao clicar em balance e criando um array com os valores que estao dispostos em movements
+
+  labelBalance.addEventListener("click", function () {
+    const movementsUI = Array.from(
+      document.querySelectorAll(".movements__value")
+    );
+    console.log(movementsUI.map((el) => Number(el.textContent)));
+});`);
+labelBalance.addEventListener("click", function () {
+  const movementsUI = Array.from(
+    document.querySelectorAll(".movements__value")
+  );
+  console.log(movementsUI.map((el) => Number(el.textContent)));
+});
+
+console.log(`
+Uma forma mais inteligente é passar a funcao map como segundo parametro de Array.from (que é a sintaxe permitida com funcao de callback)
+
+  labelBalance.addEventListener("click", function () {
+    const movementsUI2 = Array.from(
+      document.querySelectorAll(".movements__value"),
+      (el) => Number(el.textContent)
+  );
+  console.log("Callback dentro de Array.from:", movementsUI2);
+});`);
+
+labelBalance.addEventListener("click", function () {
+  const movementsUI2 = Array.from(
+    document.querySelectorAll(".movements__value"),
+    (el) => Number(el.textContent)
+  );
+  console.log("Callback dentro de Array.from:", movementsUI2);
+});
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
