@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Converting and Checking numbers</title>
+  </head>
+  <body>
+    <script>
+      "use strict";
+
+      console.log(
+        ` 
+        Numeros sao internamente tratados sempre como floats
+
+        console.log(23 === 23.0);
+        
+        `
+      );
+
+      console.log(23 === 23.0);
+
+      console.log(
+        ` 
+       Devido a representacao decimal em base 2 que a linguagem binaria utiliza para escrever os numeros, 
+       algumas operacoes podem resultar incorretas.
+
+        `
+      );
+
+      console.log("0.1 + 0.2 === 0.3", 0.1 + 0.2 === 0.3);
+
+      console.log(
+        `
+        Podemos converter strings para numeros em mais de uma forma:
+
+        `
+      );
+      console.log('Number("23")', Number("23"));
+      console.log('+"23"', +"23");
+
+      console.log(
+        `
+        Podemos fazer parse de strigs utilizando a funcao Number
+        `
+      );
+
+      console.log('Number.parseInt("30px") =', Number.parseInt("30px"));
+      console.log(
+        'Number.parseInt("e23") =',
+        Number.parseInt("e23"),
+        "|| Precisa comecar com numero para dar certo"
+      );
+
+      console.log(
+        `
+        Funcao para verificar se um valor é ou nao um numero:
+
+        Number.isNAN -> retorna FALSE se for numero e TRUE se nao for numero
+
+        `
+      );
+      console.log("Number.isNaN(20) = ", Number.isNaN(20));
+      console.log(
+        "Number.isNaN('20') = ",
+        Number.isNaN("20"),
+        "|| retorna FALSE pois e compreendido como numero"
+      );
+      console.log(
+        'Number.isNaN(+"20x") = ',
+        Number.isNaN(+"20x"),
+        "|| nao e um numero"
+      );
+
+      console.log(`
+      Tambem podemos verificar se um numero e ou nao finito:`);
+      console.log("Number.isFinite(20) = ", Number.isFinite(20));
+      console.log("Number.isFinite(20 / 0) = ", Number.isFinite(20 / 0));
+      console.log(`
+      O metodo isFinite é a melhor maneira de checar se um valor é ou não um numero.
+      
+      Isto ocorre pois o metodo isNaN checa se o valor nao é um numero ao inves de checar se é um numero`);
+
+      console.log(
+        'Number.isFinite("20") = ',
+        Number.isFinite("20"),
+        "|| funciona bem para numeros passados como string"
+      );
+
+      console.log(`
+      Tambem temos o Number.isInteger para checar se um numero e inteiro ou nao`);
+    </script>
+  </body>
+</html>
