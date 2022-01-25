@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Math and Rounding</title>
+  </head>
+  <body>
+    <script>
+      "use strict";
+
+      console.log(`
+      =============== RAIZ QUADRADA E POTENCIA ============`);
+      console.log(
+        `
+      Raiz Quadrada:  Math.sqrt(25) = `,
+        Math.sqrt(25)
+      );
+      console.log(`Potencia: 5 ** 2 = `, 5 ** 2, "|| 5 ** 3 = ", 5 ** 3);
+      console.log(`Raiz cubica: 8 ** (1 / 3) =  `, 8 ** (1 / 3));
+
+      console.log(`
+      =============== VALORES MAXIMOS E MINIMOS ============`);
+
+      console.log(
+        "Valor maximo: Math.max(2, 5, 12, 4, 78) = ",
+        Math.max(2, 5, 12, 4, 78),
+        "Funciona inclusive com algum numero passado como string"
+      );
+      console.log(
+        "Valor minimo: Math.min(2, 5, 12, 4, 78) = ",
+        Math.min(2, 5, 12, 4, 78),
+        "Funciona inclusive com algum numero passado como string"
+      );
+
+      console.log(`
+      =============== PI E NUMERO ALEATORIO ============`);
+
+      console.log("Valor de PI: Math.PI = ", Math.PI);
+
+      console.log(
+        `Gerar numero aleatorio entre 1 e 6 (inteiros): 
+        Math.trunc(Math.random() * 6) + 1 =  `,
+        Math.trunc(Math.random() * 6) + 1
+      );
+
+      console.log(`Funcao para gerar numeros inteiros entre dois valores:
+      const randomInt = (min, max) =>
+        Math.trunc(Math.random() * (max - min) + 1) + min;
+      console.log(randomInt(1, 2));`);
+      const randomInt = (min, max) =>
+        Math.trunc(Math.random() * (max - min) + 1) + min;
+      console.log(randomInt(1, 2), "O valor min nao e incluido");
+
+      console.log(`
+      =============== ARREDONDANDO INTEIROS ============`);
+      console.log(
+        `Removando a parte decimal: 
+      Math.trunc(23.3) = `,
+        Math.trunc(23.3)
+      );
+      console.log(
+        `Arredondando para o inteiro mais proximo:
+        Math.round(23.3) = `,
+        Math.round(23.3),
+        `
+        Math.round(23.9) = `,
+        Math.round(23.9)
+      );
+      console.log(
+        `Arredondando para cima:
+      Math.ceil(23.3) = `,
+        Math.ceil(23.3)
+      );
+      console.log(
+        `Arredondando para baixo:
+      Math.floor(23.9) = `,
+        Math.floor(23.9)
+      );
+      console.log(
+        `trunc e floor funcionam da mesma maneira para numeros positivos mas diferente para negativos`,
+        `
+        Math.trunc(-23.3) =`,
+        Math.trunc(-23.3),
+        `
+        Math.floor(-23.3) =`,
+        Math.floor(-23.3),
+        "|| floor sempre arredonda para baixo"
+      );
+
+      console.log(`
+      =============== ARREDONDANDO DECIMAIS ============`);
+      console.log(
+        `(2.7).toFixed(0) =`,
+        (2.7).toFixed(0),
+        `metodo toFixed retorna string`
+      );
+      console.log(`(2.7).toFixed(3) =`, (2.7).toFixed(3));
+      console.log(`(2.345).toFixed(2) =`, (2.345).toFixed(2));
+      console.log(
+        `+(2.7).toFixed(0) =`,
+        +(2.7).toFixed(0),
+        "|| utiliza + na frente para transformar string em numero"
+      );
+    </script>
+  </body>
+</html>
