@@ -419,3 +419,12 @@ const currencies = new Map([
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
+
+// Funcao para deixar laranja cada linha par do extrato utilizando % para descobrir quando o resto é zero
+labelBalance.addEventListener("click", function () {
+  [...document.querySelectorAll(".movements__row")].forEach(function (row, i) {
+    if (i % 2 === 0) {
+      row.style.backgroundColor = "orangered";
+    }
+  });
+});

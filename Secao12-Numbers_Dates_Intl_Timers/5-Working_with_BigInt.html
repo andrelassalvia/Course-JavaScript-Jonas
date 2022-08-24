@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Working with bigInt</title>
+  </head>
+  <body>
+    <script>
+      const maximo = Number.MAX_SAFE_INTEGER;
+      console.log(`
+      ================= TRABALHANDO COM BIGINTS =====================
+
+      Recurso novo do Js.
+
+      Lembrando que os numros sao internamente representados de forma binaria, ou seja, atraves de 
+      combinacoes de 0 e 1, o maior numero que o js consegue representar é (2 ** 53 -1) = ${
+        2 ** 53 - 1
+      }.
+
+      Este numero maximo e gravado em uma constante interna do js Number.MAX_SAFE_INTEGER = ${maximo}
+
+      Isso significa que numeros maiores que este nao conseguem ser trabalhados de forma segura dentro do js
+      retornando erros de calculo
+
+      O big Int permite que armazenemos numeros do tamnho qye quisermos
+
+      Para criarmos uma bigInt podemos passar um n no final
+      ${56568956564548787465658986464n}
+
+      ou chamar a funcao bigInt:
+
+      ${BigInt(54548787451545878745454)}
+
+      Podemos assim fazer operacoes utilizando esta sintaxe
+
+      ${54548784548484545n * 878745415487847n}
+
+      Mas nao podemos fazer um mix entre BigInt e numeros regulares. Para isso, utilizamos a construcao
+      BigInt no numero regular para poder viabilizar o calculo
+      `);
+
+      const huge = 454578784564787545487845454n;
+      const num = 23;
+
+      console.log(`
+      const huge = 454578784564787545487845454n
+      const num = 23
+
+      huge * BigInt(num) = ${huge * BigInt(num)}
+
+      Mas temos algumas excecoes nesta logica: 
+        
+        - operacoes de comparacao:
+        (20n === 20) = ${
+          20n === 20
+        } -> comparacao estrita com 3 iguais (===) entende que BigInt é diferente do numero regular
+                com dois iguais (==) funcionaria corretamente
+
+        - Math operations nao funcionam Math.sqrt(16n) -> retorna erro 
+        
+        `);
+      // console.log(`${Math.sqrt(16n)}`);
+
+      console.log(`
+        E a ultima limitacao é com divisoes pois BigInt é tratado como numero inteiro.
+
+        10n / 3n = ${10n / 3n} -> nao retorna os valores decimais do resto
+      `);
+    </script>
+  </body>
+</html>

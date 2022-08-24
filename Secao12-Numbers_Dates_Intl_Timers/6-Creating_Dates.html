@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Creating Dates</title>
+  </head>
+  <body>
+    <script>
+      const agora = new Date();
+      console.log(`
+      ================= CRIANDO DATAS ==================
+      
+      Formas de criar uma data
+
+      const agora = new Date() -> ${agora}
+
+      Podemos passar como uma string
+
+      console.log(new Date("Sat Aug 13 2022 15:59:49")) -> ${new Date(
+        "Sat Aug 13 2022 15:59:49"
+      )}
+
+      Podemos passar valores ou parametros de outros locais do codigo
+      new Date(2022, 11, 20, 15, 00) -> ${new Date(2022, 11, 20, 15, 00)}
+
+      data inicial de todo sistema é 1970 => new Date(0) = ${new Date(0)}
+
+      se quisermos calcularmos o timestamps (que é baseado na data 0) podemos ir multiplicando dias * horas * minutos * segundos * 1000 para 
+      milisengundos
+
+      new Date(4 * 24 * 60 * 60 * 1000) = ${new Date(4 * 24 * 60 * 60 * 1000)}
+
+      este resultado em milisegundos é igual a ${4 * 24 * 60 * 60 * 1000}
+
+      
+      Podemos retornar o ano:
+      new Date(2022, 11, 20, 15, 00).getFullYear() = ${new Date(
+        2022,
+        11,
+        20,
+        15,
+        00
+      ).getFullYear()}
+
+      o mes:
+      new Date(2022, 11, 20, 15, 00).getMonth() = ${new Date(
+        2022,
+        11,
+        20,
+        15,
+        00
+      ).getMonth()}
+
+      o dia do mes
+      new Date(2022, 11, 20, 15, 00).getDate() = ${new Date(
+        2022,
+        11,
+        20,
+        15,
+        00
+      ).getDate()}
+
+      o dia da semana
+      new Date(2022, 11, 20, 15, 00).getDay() = ${new Date(
+        2022,
+        11,
+        20,
+        15,
+        00
+      ).getDay()} -> o dia 1 é domingo
+
+      a hora
+      new Date(2022, 11, 20, 15, 00).getHours() = ${new Date(
+        2022,
+        11,
+        20,
+        15,
+        00
+      ).getHours()} 
+
+      os minutos
+      new Date(2022, 11, 20, 15, 00).getMinutes() = ${new Date(
+        2022,
+        11,
+        20,
+        15,
+        00
+      ).getMinutes()} 
+
+     os segundos
+      new Date(2022, 11, 20, 15, 00).getSeconds() = ${new Date(
+        2022,
+        11,
+        20,
+        15,
+        00
+      ).getSeconds()} 
+
+      E podemos passar para o ISO - convencao internacional
+      new Date(2022, 11, 20, 15, 00).toISOString() = ${new Date(
+        2022,
+        11,
+        20,
+        15,
+        00
+      ).toISOString()} 
+
+      e podemos passar para timestamp
+      new Date(2022, 11, 20, 15, 00).getTime() = ${new Date(
+        2022,
+        11,
+        20,
+        15,
+        00
+      ).getTime()} 
+
+      e podemos reverter uma timestamp
+      new Date(1671548400000) = ${new Date(1671548400000)} 
+
+      e para saber o timestamp atual
+      Date.now() = ${Date.now()}    
+      
+      e por fim podemos setar uma data
+      new Date().setFullYear(2040) = ${new Date().setFullYear(2040)}
+
+      `);
+    </script>
+  </body>
+</html>

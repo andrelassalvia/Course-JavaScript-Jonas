@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>High Order Function</title>
   </head>
   <body>
     <div>
@@ -14,12 +14,12 @@
       "use strict";
 
       // Usando flag global para retirar espacos entre as palavras
-      const oneWord = function (str) {
+      let oneWord = function (str) {
         return str.replace(/ /g, "").toLowerCase();
       };
 
-      // oneWord = oneWord("A patria que te Pariu");
-      // console.log(oneWord);
+      oneWord = oneWord("A patria que te Pariu");
+      console.log(oneWord);
 
       // Usando spread operator e destructuring assignment para CAPITALIZAR primeira palavra
       const upperFirstWord = function (str) {

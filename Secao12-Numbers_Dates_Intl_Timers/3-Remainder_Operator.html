@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Remainder Operator</title>
+  </head>
+  <body>
+    <script>
+      console.log("=============== REMAINDER OPERATOR ==================");
+      console.log(`
+        Retorna o resto de uma divisao.
+
+        Portanto 5 / 2 => significa que podemos somar o 2 duas vezes = 4 e o resto é 1
+
+        Para fazermos a  operacao de remainder basta 5 % 2 = ${5 % 2}
+
+        ========================================================================
+
+        Vamos criar uma funcao para verificar se um numero é par ou não:
+
+        const even = (n) =>
+        n % 2 === 0 ? console.log("par") : console.log("Impar");
+
+        even(4);
+        even(23);
+      `);
+
+      const even = (n) =>
+        n % 2 === 0 ? console.log(`${n} is even`) : console.log(`${n} is odd`);
+      even(4);
+      even(23);
+    </script>
+  </body>
+</html>

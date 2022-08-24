@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Internationalizing Dates</title>
+  </head>
+  <body>
+    <script>
+      const now = new Date();
+      const int = new Intl.DateTimeFormat("pt-BR").format(now);
+      const options = {
+        day: "2-digit",
+        month: "long",
+        hour: "numeric",
+        minute: "numeric",
+        year: "numeric",
+        weekday: "long",
+      };
+      const intWithOptions = new Intl.DateTimeFormat("pt-BR", options).format(
+        now
+      );
+
+      const locale = navigator.language;
+
+      const intWithOptionsAndLocale = new Intl.DateTimeFormat(
+        locale,
+        options
+      ).format(now);
+
+      console.log(`
+    =============== INTERNACIONALIZANDO DATAS ===============
+
+    Para internacionalizarmos um dado criamos um novo objeto untilizando new Intl e passando o que desejamos formatar:
+
+    const now = new Date();
+    new.Intl.DateTimeFormat('pt-BR').format(now) => ${int} -> passamos o parametro que queremos converter dentro do format.
+
+    procurar pelas formatacoes internacionais em ISO Language Code Tables.
+
+    Se quisermos passar mais informacoes como hora e minutos bem como formatar como o valor sera apresentado, precisamos criar 
+    um objeto que sera passado como segundo parametro da funcao.
+
+    const options = {
+        day: "2-digit",
+        month: "long",
+        hour: "numeric",
+        minute: "numeric",
+        year:'numeric',
+        weekday:"long"
+      };
+
+    new Intl.DateTimeFormat("pt-BR", options).format(now) = ${intWithOptions}
+
+    Se quisermos pegar a localidade a partir do browser do usuario podemos fazer da seguinte forma:
+
+    const locale = navigator.language;
+
+    locale = ${locale}
+
+    e utilizamos este valor como parametro
+
+    new Intl.DateTimeFormat(locale, options).format(now) = ${intWithOptionsAndLocale}
+
+    
+    `);
+    </script>
+  </body>
+</html>

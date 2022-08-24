@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Internationalizing Numbers</title>
+  </head>
+  <body>
+    <script>
+      const number = 22542255588655.66;
+      const ptNumber = new Intl.NumberFormat("pt-BR").format(number);
+      const gbNumber = new Intl.NumberFormat("en-GB").format(number);
+      const browserNumber = new Intl.NumberFormat(navigator.language).format(
+        number
+      );
+      const options = {
+        style: "unit",
+        unit: "mile-per-hour",
+      };
+
+      const browserWithOptions = new Intl.NumberFormat(
+        navigator.language,
+        options
+      ).format(number);
+      console.log(`
+      ============= INTERNACIONALIZANDO NUMEROS ================
+
+      const number = 22542255588655.66;
+
+      new Intl.NumberFormat("pt-BR").format(number) = ${ptNumber}
+
+      new Intl.NumberFormat("en-GB").format(number) = ${gbNumber}
+
+      Browser = new Intl.NumberFormat(navigator.language).format(number) = ${browserNumber}
+
+      Podemos criar opcoes de formatacao para exibir unidades como velocidade, moeda, temperatura etc
+
+      const options = {
+        style: "unit",
+        unit: "mile-per-hour",
+      };
+
+      Browser = new Intl.NumberFormat(navigator.language, options).format(number) = ${browserWithOptions}
+
+
+      `);
+    </script>
+  </body>
+</html>

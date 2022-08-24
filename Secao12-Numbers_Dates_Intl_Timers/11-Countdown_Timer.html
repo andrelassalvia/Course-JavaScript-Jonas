@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Countdown Timer</title>
+  </head>
+  <body>
+    <script>
+      const timer = function (tempo) {
+        let time = tempo;
+        const interval = setInterval(function () {
+          time--;
+          const minutes = String(Math.trunc(time / 60)).padStart(2, 0);
+          const seconds = String(time % 60).padStart(2, 0);
+          console.log(`${minutes}:${seconds}`);
+          if (time === 0) {
+            clearInterval(interval);
+          }
+        }, 1000);
+      };
+      timer(10);
+      console.log(`
+      ============ COUNTDOWN TIMER ===============
+
+
+      `);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Numeric Separators</title>
+  </head>
+  <body>
+    <script>
+      const diameter = 28_700_000_000_000;
+      const number = Number("230_000");
+      console.log(`
+      ================= NUMERIC SEPARATORS ======================
+
+      Util para ler e entender numeros muito grandes
+
+      const diameter = 28700000000000;
+
+      podemos utilizar os numeric separators para facilitar a leitura que o js interpreta e o ignora
+
+      const diameter = 28_700_000_000_000 = ${diameter}
+
+      Mas nao funciona quando estamos convertendo uma string para numeros como quando utilizamos a funcao Number() por exemplo:
+
+      Number("230_000") = ${number}
+      `);
+    </script>
+  </body>
+</html>

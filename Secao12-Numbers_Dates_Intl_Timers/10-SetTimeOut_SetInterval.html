@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Set TimeOut and Set Interval</title>
+  </head>
+  <body>
+    <script>
+      setTimeout(() => console.log("TimeOut executado"), 1000 * 5);
+
+      const pizza = setTimeout(
+        (ing) => console.log("Aqui está sua pizza de " + ing),
+        1000 * 3,
+        "brocolis"
+      );
+
+      const indredients = ["mozzarela", "espinafre", "azeitona", "manjericao"];
+
+      const pizza2 = setTimeout(
+        (ing1, ing2, ing3, ing4) =>
+          console.log(
+            `Aqui esta sua pizza de ${ing1}, ${ing2}, ${ing3} e ${ing4}`
+          ),
+        1000 * 3,
+        ...indredients
+      );
+
+      setInterval(() => console.log(new Date().getSeconds()), 1000);
+      console.log(`
+    ========= SET TIME OUT AND SET INTERVAL ==============
+    
+    SetTimeOut -> utilizado para executar um codigo em algum momento no futuro
+
+    Importante notar que o setTimeOut é executado quando o código é lido. Isto não significa que o código será
+    interrompido neste ponto. O programa continua lendo o restante do código após o setTimeOut() e tudo o que 
+    nao estiver dentro dele será executado imediatamente enquento o setTimeOut será executado no momento definido.
+
+    setTimeout(() => console.log("TimeOut executado"), 1000 * 5);
+
+    Os argumentos que vierem após o tempo serao os argumentos da funcao:
+    setTimeout(
+        (ing) => console.log("Aqui está sua pizza de " + ing),
+        1000 * 3,
+        "brocolis"
+      );
+
+      podemos cancelar o timeOut caso algum parametro seja passado. Para isso basta passar a funcao clearTimeOut apos a condiconal.
+
+    SetInterval -> utilizado para executar um codigo dentro de intervalos especificos ate que seja ordenada sua parada
+
+    let time = new Date();
+      setInterval(() => console.log(time), 3000);
+    `);
+    </script>
+  </body>
+</html>

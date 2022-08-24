@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Operation with dates</title>
+  </head>
+  <body>
+    <script>
+      const data1 = new Date(2037, 10, 28);
+      const data2 = new Date(2037, 11, 15);
+      caldDaysPassed = (data1, data2) => data2 - data1;
+      const mili = caldDaysPassed(data1, data2);
+      const days = mili / (1000 * 60 * 60 * 24);
+
+      console.log(`
+        =================== OPERACAO COM DATAS ===============
+
+        Vamos calcular a diferenca de dias entre duas datas:
+
+        const data1 = new Date(2037, 10, 28);
+        const data2 = new Date(2037, 11, 15);
+
+        caldDaysPassed = (data1, data2) => (data2 - data1);
+
+        const mili = calcDaysPassed(data1, data2) = ${caldDaysPassed(
+          data1,
+          data2
+        )} - valores em milisegundos
+
+        Para converter milisegiundos em dias basta fazer o calculo:
+
+        const days = mili / (1000 * 60 * 60 * 24) = ${days} dias;
+
+        Para nao corrermos o risco de termos datas negativas basta passarmos o Math.abs() antes do calculo
+
+      `);
+    </script>
+  </body>
+</html>
