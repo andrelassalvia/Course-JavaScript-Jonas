@@ -1,0 +1,113 @@
+- Re-render bookmark view
+- Change url id
+- refact sendJSON and getJSON methods
+- display user icon on user recipe
+
+
+CONTROLLER:
+
+	const controlAddRecipe = async function () {
+		
+		// render bookmark view
+		bookmarksView.render(model.state.bookmarks);
+		
+		// change ID in URL
+		window.history.pushState(null, '', `#${model.state.recipe.id}`);
+	}
+		
+
+
+HELPERS: refact sendJSON and getJSON methods
+
+	export const ajaxAPI = async function (url, uploadData = undefined) {
+	  try {
+		const fetchPro = uploadData
+		  ? fetch(url, {
+			  method: 'POST',
+			  headers: {
+				'Content-Type': 'application/json',
+			  },
+			  body: JSON.stringify(uploadData),
+			})
+		  : fetch(url);
+
+		const response = await Promise.race([fetchPro, timeout(TIMEOUT_SEC)]);
+		const data = await response.json();
+
+		if (!response.ok) throw new Error(`${data.message} ${response.status}`);
+
+		return data;
+	  } catch (error) {
+		throw error;
+	  }
+	};
+	
+	after that change sendJSON and getJSON for ajaxAPI on model.js
+	
+
+MODEL: display user icon on user recipe
+
+	passar o key do usuario como parametro de procura
+
+	export const loadRecipe = async function (id) {
+		try {
+			const data = await ajaxAPI(`${API_URL}${id}?key=${KEY}`);
+		}
+	}
+	
+	export const loadSearchResults = async function (query) {
+		try {
+			const data = await ajaxAPI(`${API_URL}?search=${query}&key=${KEY}`);
+			
+			state.search.recipes = data.data.recipes.map(rec => {
+			  return {
+				id: rec.id,
+				image: rec.image_url,
+				publisher: rec.publisher,
+				title: rec.title,
+				...(rec.key && { key: rec.key }),  // precisa colocar a chave do user no objeto de resultado de procura para viabilizar o aparecimento do icone
+														do usuario na lista de resultados
+			  };
+			});
+		}
+	}
+	
+
+RECIPE VIEW: renderiza icone do usuario na receita
+
+	 _generateMarkup() {
+		return `
+			<div class="recipe__user-generated ${this._data.key ? '' : 'hidden'}">  // se nao tiver key do user esconde o icone
+				<svg>
+					<use href="${icons}#icon-user"></use>
+				</svg>
+			</div>
+	}
+	
+
+PREVIEW VIEW: renderiza icone do usuario na lista de resultados
+
+	_generateMarkup() {
+		return `
+			<li class="preview">
+			  <a class="preview__link ${
+				id === this._data.id ? 'preview__link--active' : ''
+			  }" href="#${this._data.id}">
+				<figure class="preview__fig">
+				  <img src="${this._data.image}" alt="${this._data.title}" />
+				</figure>
+				<div class="preview__data">
+				  <h4 class="preview__title">${this._data.title}</h4>
+				  <p class="preview__publisher">${this._data.publisher}</p>
+				  <div class="preview__user-generated ${
+					this._data.key ? '' : 'hidden'			// se nao tiver key do user esconde o icone
+				  }">
+					<svg>
+					  <use href="${icons}#icon-user"></use>
+					</svg>
+				  </div>
+				</div>
+			  </a>
+			</li>
+		`;
+	}

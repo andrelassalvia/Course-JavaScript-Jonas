@@ -1,0 +1,256 @@
+CLICK UPLOAD RECIPE BUTTON
+	- close form window
+	- save recipe in API
+	- show recipe on screen
+	- add it to bookmark
+	
+
+CONTROLLER: call upload method from model
+
+	const controlAddRecipe = function (newRecipe) {
+	  // upload new recipe
+	  model.uploadRecipe(newRecipe);
+	};
+
+
+MODEL: upload method will create a recipe object in the same format as we get data fetching the API
+
+	export const uploadRecipe = async function (newRecipe) {
+	  try {
+	  
+		// transform data back to API format - be able to post
+		
+		const ingredients = await Object.entries(newRecipe)
+		  .filter(entry => entry[0].startsWith('ingredient') && entry[1] !== '')
+		  .map(ing => {
+			const ingArr = ing[1].replaceAll(' ', '').split(',');
+
+			if (ingArr.length !== 3) {
+			  throw new Error('Ingredients were typed using wrong format.');
+			}
+
+			const [quantity, unit, description] = ingArr;
+
+			return {
+			  quantity: quantity === '' ? null : +quantity,
+			  unit,
+			  description,
+			};
+		  });
+	  } catch (error) {
+		throw error;
+	  }
+	};
+	
+	
+CONTROLLER: include renderError method
+
+	const controlAddRecipe = async function (newRecipe) {
+	  try {
+		// upload new recipe
+		await model.uploadRecipe(newRecipe);
+	  } catch (error) {
+		console.error(error);
+		addRecipeView.renderError(error);
+	  }
+	};
+	
+
+MODEL: create the recipe object with the content from newRecipe and trated ingredients.
+
+	export const uploadRecipe = async function (newRecipe) {
+	  // transform data back to API format - be able to post
+	  try {
+		// handle ingredients first
+		const ingredients = await Object.entries(newRecipe)
+		  .filter(entry => entry[0].startsWith('ingredient') && entry[1] !== '')
+		  .map(ing => {
+			const ingArr = ing[1].replaceAll(' ', '').split(',');
+
+			if (ingArr.length !== 3) {
+			  throw new Error('Ingredients were typed using wrong format.');
+			}
+
+			const [quantity, unit, description] = ingArr;
+
+			return {
+			  quantity: quantity === '' ? null : +quantity,
+			  unit,
+			  description,
+			};
+		  });
+
+		// create recipe object with newRecipe param and ingredients already customized
+		const recipe = {
+		  title: newRecipe.title,
+		  source_url: newRecipe.sourceUrl,
+		  image_url: newRecipe.image,
+		  publisher: newRecipe.publisher,
+		  cooking_time: +newRecipe.cookingTime,
+		  servings: +newRecipe.servings,
+		  ingredients,
+		};
+		console.log(recipe);
+	  } catch (error) {
+		throw error;
+	  }
+	};
+	
+
+CONFIG: save a key get from API page to be able to post a new recipe
+
+	export const API_URL = 'https://forkify-api.herokuapp.com/api/v2/recipes/';
+	export const TIMEOUT_SEC = 5;
+	export const RESULTS_PER_PAGE = 10;
+	export const KEY = '4203a9d5-154c-4adb-bba5-85c39bd04e77';
+
+
+HELPERS: create a function to send JSON to API 
+
+	export const sendJSON = async function (url, uploadData) {
+	  try {
+		const fetchPro = fetch(url, {
+		  method: 'POST',
+		  headers: {
+			'Content-Type': 'application/json',
+		  },
+		  body: JSON.stringify(uploadData),
+		});
+		const response = await Promise.race([fetchPro, timeout(TIMEOUT_SEC)]);
+		const data = await response.json();
+
+		if (!response.ok) throw new Error(`${data.message} ${response.status}`);
+
+		return data;
+	  } catch (error) {
+		throw error; 
+	  }
+	};
+	
+
+MODEL: Insert sendJSON in upload
+
+	export const uploadRecipe = async function (newRecipe) {
+	  // transform data back to API format - be able to post
+	  try {
+		// handle ingredients first
+		const ingredients = await Object.entries(newRecipe)
+		  .filter(entry => entry[0].startsWith('ingredient') && entry[1] !== '')
+		  .map(ing => {
+			const ingArr = ing[1].replaceAll(' ', '').split(',');
+
+			if (ingArr.length !== 3) {
+			  throw new Error('Ingredients were typed using wrong format.');
+			}
+
+			const [quantity, unit, description] = ingArr;
+
+			return {
+			  quantity: quantity === '' ? null : +quantity,
+			  unit,
+			  description,
+			};
+		  });
+
+		// create recipe object with newRecipe param and ingredients already customized
+		const recipe = {
+		  title: newRecipe.title,
+		  source_url: newRecipe.sourceUrl,
+		  image_url: newRecipe.image,
+		  publisher: newRecipe.publisher,
+		  cooking_time: +newRecipe.cookingTime,
+		  servings: +newRecipe.servings,
+		  ingredients,
+		};
+
+		const data = await sendJSON(`${API_URL}?key=${KEY}`, recipe);
+		console.log(data);
+	  } catch (error) {
+		throw error;
+	  }
+	};
+	
+
+MODEL: create a function to convert data received from getJSON and sendJSON to the format used by our code in state.recipe
+
+	const createRecipeObject = function (data) {
+	  const { recipe } = data.data;
+	  return {
+		id: recipe.id,
+		title: recipe.title,
+		publisher: recipe.publisher,
+		sourceUrl: recipe.source_url,
+		image: recipe.image_url,
+		servings: recipe.servings,
+		cookingTime: recipe.cooking_time,
+		ingredients: recipe.ingredients,
+		...(recipe.key && { key: recipe.key }), // in case the recipe has a key to post
+	  };
+	};
+	
+
+MODEL: use createRecipeObject function and add the recipe to the bookmarks
+
+	export const uploadRecipe = async function (newRecipe) {
+	  // transform data back to API format - be able to post
+	  try {
+		// handle ingredients first
+		const ingredients = await Object.entries(newRecipe)
+		  .filter(entry => entry[0].startsWith('ingredient') && entry[1] !== '')
+		  .map(ing => {
+			const ingArr = ing[1].replaceAll(' ', '').split(',');
+
+			if (ingArr.length !== 3) {
+			  throw new Error('Ingredients were typed using wrong format.');
+			}
+
+			const [quantity, unit, description] = ingArr;
+
+			return {
+			  quantity: quantity === '' ? null : +quantity,
+			  unit,
+			  description,
+			};
+		  });
+
+		// create recipe object with newRecipe param and ingredients already customized
+		const recipe = {
+		  title: newRecipe.title,
+		  source_url: newRecipe.sourceUrl,
+		  image_url: newRecipe.image,
+		  publisher: newRecipe.publisher,
+		  cooking_time: +newRecipe.cookingTime,
+		  servings: +newRecipe.servings,
+		  ingredients,
+		};
+
+		const data = await sendJSON(`${API_URL}?key=${KEY}`, recipe);
+		state.recipe = createRecipeObject(data);
+		addBookmark(state.recipe);
+	  } catch (error) {
+		throw error;
+	  }
+	};
+	
+	
+CONTROLLER: render recipe and close form window to show the recipe on the screen
+
+	const controlAddRecipe = async function (newRecipe) {
+	  try {
+		recipeView.renderSpinner();
+
+		// upload new recipe
+		await model.uploadRecipe(newRecipe);
+
+		//  render recipe
+		recipeView.render(model.state.recipe);
+
+		// close form window
+		setTimeout(function () {
+		  addRecipeView.showRecipeForm();
+		}, 2);
+	  } catch (error) {
+		console.error(error);
+		addRecipeView.renderError(error);
+	  }
+};
